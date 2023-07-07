@@ -20,7 +20,7 @@ public class MapBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        test();
+        
         if(Input.GetKey(KeyCode.D))
         {
             Rotation = Vector3.up;
