@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using TMPro.EditorUtilities;
 
 public class MenuController : MonoBehaviour
 {
@@ -13,11 +14,10 @@ public class MenuController : MonoBehaviour
     private TMP_Text VolumeSliderText;
     [SerializeField]
     private TMP_Text TitleText;
-
-    private float timer;
-    private float originalSize;
-    private int counter;
-    private bool captureSize = true;
+    [SerializeField]
+    private TMP_Dropdown ResolutionDropDown;
+    [SerializeField]
+    private Toggle FullScreenToggle;
     public void ExitGame()
     {
         Application.Quit();
@@ -29,6 +29,33 @@ public class MenuController : MonoBehaviour
     public void AdjustVolume()
     {
         VolumeSliderText.SetText(VolumeSlider.value.ToString());
-     
+        PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
+
+    }
+    public void ResolutionChangeRequested()
+    {
+        switch (ResolutionDropDown.value)
+        {
+            case 1:
+                {
+                    Screen.SetResolution(1920, 1080, FullScreenToggle.isOn);
+                    break;
+                }
+            case 2:
+                {
+                    Screen.SetResolution(1280, 720, FullScreenToggle.isOn);
+                    break;
+                }
+            case 3:
+                {
+                    Screen.SetResolution(800, 600, FullScreenToggle.isOn);
+                    break;
+                }
+
+            default:
+                {
+                    break;
+                }
+        }
     }
 }
