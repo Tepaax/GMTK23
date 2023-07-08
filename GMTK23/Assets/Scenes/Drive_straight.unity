@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7681605610237302353, guid: 94be3e186e842034e9c924285d408c31, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 141532935}
     - target: {fileID: 7681605610237302354, guid: 94be3e186e842034e9c924285d408c31, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -211,6 +215,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94be3e186e842034e9c924285d408c31, type: 3}
+--- !u!114 &141532935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3623045420221171159, guid: 94be3e186e842034e9c924285d408c31, type: 3}
+  m_PrefabInstance: {fileID: 141532934}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &488795050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6108090315323542528, guid: 929b975416d44764c8342286b1cf9063, type: 3}

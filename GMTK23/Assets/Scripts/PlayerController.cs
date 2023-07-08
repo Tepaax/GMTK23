@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text m_TextMeshPro = null;
+    private TMP_Text timerText = null;
 
     public bool movingEnabled = false;
     public float wheelRadius = 1.0f;
@@ -67,7 +68,8 @@ public class PlayerController : MonoBehaviour
             currentSpeed += acceleration * Time.deltaTime;
         }
 
-        transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
+        //transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
+        transform.Translate(20.0f * Time.deltaTime * Vector3.forward);
 
         //float distanceTraveled = currentSpeed * Time.deltaTime;
         //float rotationInRadians = distanceTraveled / wheelRadius;
@@ -77,6 +79,11 @@ public class PlayerController : MonoBehaviour
         //{
         //    wheel.transform.Rotate(rotationInDegrees, 0, 0);
         //}
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void DisplayTime()
@@ -85,6 +92,6 @@ public class PlayerController : MonoBehaviour
         int seconds = Mathf.FloorToInt(timer % 60);
         int milliseconds = Mathf.FloorToInt((timer * 1000) % 1000);
         string timeString = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
-        m_TextMeshPro.SetText("Timer: " + timeString);
+        timerText.SetText("Timer: " + timeString);
     }
 }
