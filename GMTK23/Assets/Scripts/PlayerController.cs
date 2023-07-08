@@ -1,19 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rigidbody = null;
-    private bool movingEnabled = false;
-    float currentSpeed = 0f;
-    float acceleration = 5f;
+    public bool movingEnabled = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
+    private float currentSpeed = 0f;
+    private float acceleration = 5f;
 
-    // Update is called once per frame
+    public GameObject[] wheels;
+    public float wheelRadius;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -26,11 +23,15 @@ public class PlayerController : MonoBehaviour
             currentSpeed += acceleration * Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            currentSpeed -= acceleration * Time.deltaTime * 0.5f;
-        }
-
         transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
+
+        float distanceTraveled = currentSpeed * Time.deltaTime;
+        float rotationInRadians = distanceTraveled / wheelRadius;
+        float rotationInDegrees = rotationInRadians * Mathf.Rad2Deg;
+
+        foreach (GameObject wheel in wheels)
+        {
+            wheel.transform.Rotate(rotationInDegrees, 0, 0);
+        }
     }
 }
