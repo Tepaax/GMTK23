@@ -18,13 +18,13 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField]
     private TMP_Text VolumeSliderText = null;
     [SerializeField]
-    private TMP_Dropdown ResolutionDropDown  =null;
+    private TMP_Dropdown ResolutionDropDown = null;
     [SerializeField]
     private Toggle FullScreenToggle = null;
     [SerializeField]
     private GameObject ControlsMenu = null;
     [SerializeField]
-    private Animator TitleTextAnimator = null;
+    private AudioSource PauseMusic = null;
    
     private void Start()
     {
@@ -66,8 +66,7 @@ public class PauseMenuController : MonoBehaviour
                 gamePaused = true;
                 ControlsMenu.gameObject.SetActive(false);
                 Time.timeScale = 0;
-              //  TitleTextAnimator.Play("Active", 0, 0.0f);
-                
+                             
     }
    public void ResumeGame()
     {
@@ -89,6 +88,8 @@ public class PauseMenuController : MonoBehaviour
     {
         VolumeSliderText.SetText(VolumeSlider.value.ToString());
         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
+        PauseMusic.volume = VolumeSlider.value * 0.01f;
+
 
     }
     public void ResolutionChangeRequested()

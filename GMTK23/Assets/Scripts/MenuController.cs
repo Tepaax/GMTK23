@@ -17,8 +17,8 @@ public class MenuController : MonoBehaviour
     private TMP_Dropdown ResolutionDropDown  =null;
     [SerializeField]
     private Toggle FullScreenToggle = null;
-    [SerializeField] 
-    private Animator TitleTextAnimator = null;
+    [SerializeField]
+    private AudioSource MenuMusic = null;
     private void Start()
     {
         if (PlayerPrefs.HasKey("Resolution"))
@@ -41,8 +41,7 @@ public class MenuController : MonoBehaviour
         AdjustVolume();
         ResolutionChangeRequested();
 
-      //  TitleTextAnimator.Play("Active", 0, 0.0f);
-     
+          
     }
     public void ExitGame()
     {
@@ -56,6 +55,7 @@ public class MenuController : MonoBehaviour
     {
         VolumeSliderText.SetText(VolumeSlider.value.ToString());
         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
+        MenuMusic.volume = VolumeSlider.value * 0.01f;
 
     }
     public void ToggleFullScreenMode()
