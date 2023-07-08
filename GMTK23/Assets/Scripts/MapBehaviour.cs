@@ -7,16 +7,8 @@ public class MapBehaviour : MonoBehaviour
     private Vector3 Rotation;
 
     [SerializeField]
-    private float Speed;
-    [SerializeField]
-    private Texture2D Texture;
+    private float CameraSpeed;
 
-
-    void test()
-    {
-        var pixel = Texture.GetPixel(Texture.width, Texture.height);
-        Debug.Log(pixel);
-    }
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +25,6 @@ public class MapBehaviour : MonoBehaviour
         {
             Rotation = Vector3.zero;
         }
-        transform.Rotate(Rotation * Speed * Time.deltaTime);
+        transform.Rotate(Rotation * CameraSpeed * Time.deltaTime);
     }
 }
