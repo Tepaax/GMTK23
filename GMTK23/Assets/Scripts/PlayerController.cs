@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed = 0.0f;
     private float acceleration = 5.0f;
 
-    private GameObject[] wheels = null;
+   // private GameObject[] wheels = null;
     private GameObject selectedCar = null;
 
     void Start()
