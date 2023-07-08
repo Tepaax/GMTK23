@@ -56,7 +56,8 @@ public class CarSelectorBehaviour : MonoBehaviour
 
         // Instantiate the new car and set it as the current car
         car = Instantiate(cars[currentIndex], transform.position, transform.rotation);
+        PlayerPrefs.SetString("car", car.name.Replace("(Clone)", null));
     }
 
-    
+
 }

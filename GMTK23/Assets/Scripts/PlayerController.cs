@@ -1,15 +1,25 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public bool movingEnabled = false;
+    public float wheelRadius = 1.0f;
 
-    private float currentSpeed = 0f;
-    private float acceleration = 5f;
+    private float currentSpeed = 0.0f;
+    private float acceleration = 5.0f;
 
-    public GameObject[] wheels;
-    public float wheelRadius;
+    private GameObject[] wheels = null;
+    private GameObject selectedCar = null;
+
+    void Start()
+    {
+        selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/" + PlayerPrefs.GetString("car")), transform.position, transform.rotation, transform);
+        wheels = new GameObject[4];
+        for (int i = 0; i < wheels.Length; i++)
+        {
+            wheels[i] = selectedCar.transform.GetChild(i + 1).gameObject;
+        }
+    }
 
     void Update()
     {
