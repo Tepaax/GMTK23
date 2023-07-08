@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,14 +14,36 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/" + PlayerPrefs.GetString("car")), transform.position, transform.rotation, transform);
-        wheels = new GameObject[4];
-        for (int i = 0; i < wheels.Length; i++)
+        if (PlayerPrefs.HasKey("car"))
         {
-            wheels[i] = selectedCar.transform.GetChild(i + 1).gameObject;
+            selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/" + PlayerPrefs.GetString("car")), transform.position, transform.rotation, transform);
+        }
+        else 
+        {
+
+            selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/truck"), transform.position, transform.rotation, transform);
+        }
+
+       // wheels = new GameObject[4];
+        //for (int i = 0; i < wheels.Length; i++)
+        //{
+        //    wheels[i] = selectedCar.transform.GetChild(i + 1).gameObject;
+        //}
+    }
+    public void ReinstantiateCar()
+    {
+       if (PlayerPrefs.HasKey("car"))
+        {
+            Destroy(selectedCar);
+            selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/" + PlayerPrefs.GetString("car")), transform.position, transform.rotation, transform);
+          //  Array.Clear(wheels, 0, wheels.Length);
+             //for (int i = 0; i < wheels.Length; i++)
+             //{
+             //    wheels[i] = selectedCar.transform.GetChild(i + 1).gameObject;
+             //}
+
         }
     }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -32,16 +55,16 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed += acceleration * Time.deltaTime;
         }
-
+        
         transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
 
         float distanceTraveled = currentSpeed * Time.deltaTime;
         float rotationInRadians = distanceTraveled / wheelRadius;
         float rotationInDegrees = rotationInRadians * Mathf.Rad2Deg;
-
-        foreach (GameObject wheel in wheels)
-        {
-            wheel.transform.Rotate(rotationInDegrees, 0, 0);
-        }
+       
+        //foreach (GameObject wheel in wheels)
+        //{
+        //    wheel.transform.Rotate(rotationInDegrees, 0, 0);
+        //}
     }
 }

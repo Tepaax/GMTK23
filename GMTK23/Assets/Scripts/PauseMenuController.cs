@@ -25,6 +25,8 @@ public class PauseMenuController : MonoBehaviour
     private GameObject ControlsMenu = null;
     [SerializeField]
     private AudioSource PauseMusic = null;
+    [SerializeField]
+    private AudioScript GlobalAudioScript = null;
    
     private void Start()
     {
@@ -57,6 +59,7 @@ public class PauseMenuController : MonoBehaviour
             else
             {
                 PauseGame();
+                
             }
         }
     }
@@ -65,6 +68,7 @@ public class PauseMenuController : MonoBehaviour
                 pauseMenu.gameObject.SetActive(true);
                 gamePaused = true;
                 ControlsMenu.gameObject.SetActive(false);
+                GlobalAudioScript.MuteSounds();
                 Time.timeScale = 0;
                              
     }
@@ -73,6 +77,7 @@ public class PauseMenuController : MonoBehaviour
                 pauseMenu.gameObject.SetActive(false);
                 gamePaused = false;
                 ControlsMenu.gameObject.SetActive(false);
+                GlobalAudioScript.MuteSounds(); 
                 Time.timeScale = 1;       
     }
     public void ToggleFullScreenMode()
@@ -89,6 +94,7 @@ public class PauseMenuController : MonoBehaviour
         VolumeSliderText.SetText(VolumeSlider.value.ToString());
         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
         PauseMusic.volume = VolumeSlider.value * 0.01f;
+        GlobalAudioScript.UpdateVolumeGlobalAudio();
 
 
     }

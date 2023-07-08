@@ -77,11 +77,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingEnabled: 0
-  wheels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   wheelRadius: 1
 --- !u!1 &7681605612031324033
 GameObject:
@@ -108,14 +103,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7681605612031324033}
-  m_LocalRotation: {x: 0.12703171, y: 0.69424206, z: -0.15380782, w: 0.6915447}
-  m_LocalPosition: {x: -2.96, y: 0.74, z: 0.67}
+  m_LocalRotation: {x: 0.33237365, y: -0.000000029802319, z: 0.0000000745058, w: 0.9431478}
+  m_LocalPosition: {x: -0.25, y: 11.34, z: -6.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7858837319697174613}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 38.826, y: 0, z: 0}
 --- !u!20 &7681605612031324035
 Camera:
   m_ObjectHideFlags: 0
