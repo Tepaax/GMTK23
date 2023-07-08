@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
             selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/truck"), transform.position, transform.rotation, transform);
         }
 
@@ -52,8 +51,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        DisplayTime();
+        if (movingEnabled)
+        {
+            timer += Time.deltaTime;
+            DisplayTime();
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
