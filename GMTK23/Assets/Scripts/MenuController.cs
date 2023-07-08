@@ -5,26 +5,38 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField]
-    private Slider VolumeSlider;
+    private Slider VolumeSlider = null;
     [SerializeField]
-    private TMP_Text VolumeSliderText;
+    private TMP_Text VolumeSliderText = null;
     [SerializeField]
-    private TMP_Text TitleText;
+    private TMP_Text TitleText = null;
     [SerializeField]
-    private TMP_Dropdown ResolutionDropDown;
+    private TMP_Dropdown ResolutionDropDown  =null;
     [SerializeField]
-    private Toggle FullScreenToggle;
+    private Toggle FullScreenToggle = null;
+    private void Start()
+    {
+        Screen.SetResolution(800, 600, false);
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            VolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        }
+        else
+        VolumeSlider.value = 50.0f;
+        AdjustVolume();
+    }
     public void ExitGame()
     {
         Application.Quit();
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void AdjustVolume()
     {
@@ -38,8 +50,8 @@ public class MenuController : MonoBehaviour
         {
             case 1:
                 {
-                    Screen.SetResolution(1920, 1080, FullScreenToggle.isOn);
-                    break;
+                  Screen.SetResolution(800, 600, FullScreenToggle.isOn);
+                  break;
                 }
             case 2:
                 {
@@ -48,7 +60,7 @@ public class MenuController : MonoBehaviour
                 }
             case 3:
                 {
-                    Screen.SetResolution(800, 600, FullScreenToggle.isOn);
+                   Screen.SetResolution(1920, 1080, FullScreenToggle.isOn);
                     break;
                 }
 
