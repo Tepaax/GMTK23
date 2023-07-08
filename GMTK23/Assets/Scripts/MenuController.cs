@@ -14,21 +14,34 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private TMP_Text VolumeSliderText = null;
     [SerializeField]
-    private TMP_Text TitleText = null;
-    [SerializeField]
     private TMP_Dropdown ResolutionDropDown  =null;
     [SerializeField]
     private Toggle FullScreenToggle = null;
+    [SerializeField]
+    private AudioSource MenuMusic = null;
     private void Start()
     {
-        Screen.SetResolution(800, 600, false);
+        if (PlayerPrefs.HasKey("Resolution"))
+        {
+            ResolutionDropDown.value = PlayerPrefs.GetInt("Resolution");
+        }
+        else
+        {
+            ResolutionDropDown.value = 0;
+        }
         if (PlayerPrefs.HasKey("Volume"))
         {
             VolumeSlider.value = PlayerPrefs.GetFloat("Volume");
         }
         else
-        VolumeSlider.value = 50.0f;
+        {
+            VolumeSlider.value = 50.0f;
+        }
+        FullScreenToggle.isOn = Screen.fullScreen;
         AdjustVolume();
+        ResolutionChangeRequested();
+
+          
     }
     public void ExitGame()
     {
@@ -42,25 +55,33 @@ public class MenuController : MonoBehaviour
     {
         VolumeSliderText.SetText(VolumeSlider.value.ToString());
         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
+        MenuMusic.volume = VolumeSlider.value * 0.01f;
 
+    }
+    public void ToggleFullScreenMode()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
     }
     public void ResolutionChangeRequested()
     {
         switch (ResolutionDropDown.value)
         {
-            case 1:
+            case 0:
                 {
                   Screen.SetResolution(800, 600, FullScreenToggle.isOn);
+                    PlayerPrefs.SetInt("Resolution", 0);
                   break;
+                }
+            case 1:
+                {
+                    Screen.SetResolution(1280, 720, FullScreenToggle.isOn);
+                    PlayerPrefs.SetInt("Resolution", 1);
+                    break;
                 }
             case 2:
                 {
-                    Screen.SetResolution(1280, 720, FullScreenToggle.isOn);
-                    break;
-                }
-            case 3:
-                {
                    Screen.SetResolution(1920, 1080, FullScreenToggle.isOn);
+                    PlayerPrefs.SetInt("Resolution", 2);
                     break;
                 }
 
