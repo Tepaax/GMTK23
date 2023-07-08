@@ -8,23 +8,28 @@ public class MapBehaviour : MonoBehaviour
 
     [SerializeField]
     private float CameraSpeed;
+    [SerializeField]
+    private Camera camera;
 
     // Update is called once per frame
     void Update()
     {
+        if(!camera.isActiveAndEnabled)
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                Rotation = Vector3.up;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                Rotation = Vector3.down;
+            }
+            else
+            {
+                Rotation = Vector3.zero;
+            }
+            transform.Rotate(Rotation * CameraSpeed * Time.deltaTime);
+        }
         
-        if(Input.GetKey(KeyCode.D))
-        {
-            Rotation = Vector3.up;
-        }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            Rotation = Vector3.down;
-        }
-        else
-        {
-            Rotation = Vector3.zero;
-        }
-        transform.Rotate(Rotation * CameraSpeed * Time.deltaTime);
     }
 }
