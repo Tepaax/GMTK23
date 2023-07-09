@@ -28,9 +28,14 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField]
     private AudioScript GlobalAudioScript = null;
     [SerializeField]
-    private GameObject DeathCanvas = null;
+    public GameObject DeathCanvas = null;
     [SerializeField]
-    private GameObject VictoryCanvas = null;
+    public GameObject VictoryCanvas = null;
+    [SerializeField]
+    private GameObject WallBack = null;
+    [SerializeField]
+    private GameObject WallBack1 = null;
+    
    
     private void Start()
     {
@@ -67,7 +72,7 @@ public class PauseMenuController : MonoBehaviour
             }
         }
     }
-    private void DeathScreen()
+    public void DeathScreen()
     {
                 pauseMenu.gameObject.SetActive(false);
                 gamePaused = true;
@@ -76,7 +81,8 @@ public class PauseMenuController : MonoBehaviour
                 GlobalAudioScript.MuteSounds();
                 Time.timeScale = 0;
                              
-    }  private void VictoryScreen()
+    }
+    void VictoryScreen()
     {
                 pauseMenu.gameObject.SetActive(false);
                 gamePaused = true;
@@ -87,12 +93,12 @@ public class PauseMenuController : MonoBehaviour
                 Time.timeScale = 0;
                              
     }
-    private void NextLevel()
+    public void NextLevel()
     {
         VictoryCanvas.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    private void RestartLevel()
+    public void RestartLevel()
     {
         DeathCanvas.SetActive(false);
         VictoryCanvas.SetActive(false);
@@ -104,6 +110,8 @@ public class PauseMenuController : MonoBehaviour
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {
+            WallBack.gameObject.SetActive(true);
+            WallBack1.gameObject.SetActive(true);
             pauseMenu.gameObject.SetActive(true);
             gamePaused = true;
             ControlsMenu.gameObject.SetActive(false);
@@ -115,6 +123,8 @@ public class PauseMenuController : MonoBehaviour
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {
+              WallBack.gameObject.SetActive(false);
+            WallBack1.gameObject.SetActive(false);
 
             pauseMenu.gameObject.SetActive(false);
             gamePaused = false;
