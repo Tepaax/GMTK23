@@ -31,7 +31,7 @@ public class CameraBehaviour : MonoBehaviour
             x = Input.GetAxis("Mouse X");
             y = Input.GetAxis("Mouse Y");
 
-            Debug.Log(x + ":" + y);
+        
             RotateValue = new Vector3(y,x * -1.0f, 0);
             transform.eulerAngles = transform.eulerAngles - RotateValue;
         }
@@ -44,7 +44,7 @@ public class CameraBehaviour : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        Debug.Log(horizontalInput + ":" + verticalInput);
+     
     }
 
     void MoveCamera()

@@ -9,12 +9,12 @@ public class MapBehaviour : MonoBehaviour
     [SerializeField]
     private float CameraSpeed;
     [SerializeField]
-    private Camera camera;
+    private Camera MainCamera;
 
     // Update is called once per frame
     void Update()
     {
-        if(!camera.isActiveAndEnabled)
+        if(!MainCamera.isActiveAndEnabled)
         {
             if (Input.GetKey(KeyCode.D))
             {
