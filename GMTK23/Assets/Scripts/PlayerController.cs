@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float DownForceValue = 10.0f;
     private Rigidbody rb;
+    [SerializeField]
+    private GameObject ShowInfoScreen = null;
+
     void Start()
     {
         if (PlayerPrefs.HasKey("car"))
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
             DisplayTime();
             currentSpeed += acceleration * Time.deltaTime;
             rb.AddForce(-transform.up * DownForceValue * rb.velocity.magnitude);
+            ShowInfoScreen.SetActive(false);
         }
 
         transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);

@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 
 public class MenuController : MonoBehaviour
 {

@@ -64,7 +64,6 @@ public class PauseMenuController : MonoBehaviour
             else
             {
                 PauseGame();
-
             }
         }
     }
@@ -91,21 +90,20 @@ public class PauseMenuController : MonoBehaviour
 
     }
 
-    private void NextLevel()
+    public void NextLevel()
     {
         VictoryCanvas.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    private void RestartLevel()
+    public void RestartLevel()
     {
         DeathCanvas.SetActive(false);
         VictoryCanvas.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {

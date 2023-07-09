@@ -40,14 +40,17 @@ public class MapBehaviour : MonoBehaviour
             {
                 Rotation = Vector3.zero;
             }
-            transform.Rotate(Rotation * CameraSpeed * Time.deltaTime);
 
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-            MoveMap();
+            if (Time.timeScale != 0.0f)
+            {
+                transform.Rotate(Rotation * CameraSpeed * Time.deltaTime);
+                horizontalInput = Input.GetAxisRaw("Horizontal");
+                MoveMap();
+            }
             //Debug.Log(horizontalInput);
         }
-        
     }
+
     void MoveMap()
     {
         moveDirection = this.transform.right * horizontalInput / MapSpeed; ;
