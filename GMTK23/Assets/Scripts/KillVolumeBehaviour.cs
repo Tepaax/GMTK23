@@ -7,8 +7,8 @@ public class KillVolumeBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            // @TODO: Show widget on screen
         }
     }
 }

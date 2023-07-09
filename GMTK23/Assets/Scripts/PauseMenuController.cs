@@ -27,7 +27,11 @@ public class PauseMenuController : MonoBehaviour
     private AudioSource PauseMusic = null;
     [SerializeField]
     private AudioScript GlobalAudioScript = null;
-
+    [SerializeField]
+    private GameObject DeathCanvas = null;
+    [SerializeField]
+    private GameObject VictoryCanvas = null;
+   
     private void Start()
     {
         if (PlayerPrefs.HasKey("Resolution"))
@@ -41,8 +45,7 @@ public class PauseMenuController : MonoBehaviour
         }
         else
         {
-            VolumeSlider.value = 50.0f;
-
+            VolumeSlider.value = 25.0f;
         }
         AdjustVolume();
         ResolutionChangeRequested();
@@ -65,23 +68,65 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    private void DeathScreen()
     {
-        pauseMenu.gameObject.SetActive(true);
-        gamePaused = true;
-        ControlsMenu.gameObject.SetActive(false);
-        GlobalAudioScript.MuteSounds();
-        Time.timeScale = 0;
-
+                pauseMenu.gameObject.SetActive(false);
+                gamePaused = true;
+                ControlsMenu.gameObject.SetActive(false);
+                DeathCanvas.gameObject.SetActive(true);
+                GlobalAudioScript.MuteSounds();
+                Time.timeScale = 0;
+                             
+    } 
+     private void VictoryScreen()
+    {
+                pauseMenu.gameObject.SetActive(false);
+                gamePaused = true;
+                ControlsMenu.gameObject.SetActive(false);
+                DeathCanvas.gameObject.SetActive(false);
+                VictoryCanvas.gameObject.SetActive(true);
+                GlobalAudioScript.MuteSounds();
+                Time.timeScale = 0;
+                             
     }
 
-    public void ResumeGame()
+    private void NextLevel()
     {
-        pauseMenu.gameObject.SetActive(false);
-        gamePaused = false;
-        ControlsMenu.gameObject.SetActive(false);
-        GlobalAudioScript.MuteSounds();
-        Time.timeScale = 1;
+        VictoryCanvas.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void RestartLevel()
+    {
+        DeathCanvas.SetActive(false);
+        VictoryCanvas.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
+
+   private void PauseGame()
+    {
+        if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
+        {
+            pauseMenu.gameObject.SetActive(true);
+            gamePaused = true;
+            ControlsMenu.gameObject.SetActive(false);
+            GlobalAudioScript.MuteSounds();
+            Time.timeScale = 0;
+        }                   
+    }
+    
+   public void ResumeGame()
+    {
+        if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
+        {
+
+            pauseMenu.gameObject.SetActive(false);
+            gamePaused = false;
+            ControlsMenu.gameObject.SetActive(false);
+            GlobalAudioScript.MuteSounds();
+            Time.timeScale = 1;
+        }
     }
 
     public void ToggleFullScreenMode()
@@ -91,7 +136,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     public void AdjustVolume()
