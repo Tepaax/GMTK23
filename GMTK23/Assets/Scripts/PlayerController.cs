@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     private GameObject selectedCar = null;
 
+    [SerializeField]
+    private float DownForceValue = 10.0f;
+    private Rigidbody rb;
     void Start()
     {
         if (PlayerPrefs.HasKey("car"))
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         {
             selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/truck"), transform.position, transform.rotation, transform);
         }
+        rb = GetComponent<Rigidbody>();
     }
 
     public void ReinstantiateCar()
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
             timer += Time.deltaTime;
             DisplayTime();
             currentSpeed += acceleration * Time.deltaTime;
+            rb.AddForce(-transform.up * DownForceValue * rb.velocity.magnitude);
         }
 
         transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
@@ -66,7 +71,9 @@ public class PlayerController : MonoBehaviour
         int seconds = Mathf.FloorToInt(timer % 60);
         int milliseconds = Mathf.FloorToInt((timer * 1000) % 1000);
         string timeString = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        int time = minutes * 360 + seconds * 60 + milliseconds;
         timerText.SetText("Timer: " + timeString);
-        PlayerPrefs.SetString("Timer", timeString);
+        PlayerPrefs.SetInt("Timer", time);
+        PlayerPrefs.SetString("Time", timeString);
     }
 }

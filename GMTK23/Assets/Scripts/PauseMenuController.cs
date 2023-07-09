@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 
 
 public class PauseMenuController : MonoBehaviour
@@ -35,8 +31,8 @@ public class PauseMenuController : MonoBehaviour
     private GameObject WallBack = null;
     [SerializeField]
     private GameObject WallBack1 = null;
-    
-   
+
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("Resolution"))
@@ -73,26 +69,26 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    private void DeathScreen()
+    public void DeathScreen()
     {
-                pauseMenu.gameObject.SetActive(false);
-                gamePaused = true;
-                ControlsMenu.gameObject.SetActive(false);
-                DeathCanvas.gameObject.SetActive(true);
-                GlobalAudioScript.MuteSounds();
-                Time.timeScale = 0;
-                             
-    } 
-     private void VictoryScreen()
+        pauseMenu.gameObject.SetActive(false);
+        gamePaused = true;
+        ControlsMenu.gameObject.SetActive(false);
+        DeathCanvas.gameObject.SetActive(true);
+        GlobalAudioScript.MuteSounds();
+        Time.timeScale = 0;
+
+    }
+    public void VictoryScreen()
     {
-                pauseMenu.gameObject.SetActive(false);
-                gamePaused = true;
-                ControlsMenu.gameObject.SetActive(false);
-                DeathCanvas.gameObject.SetActive(false);
-                VictoryCanvas.gameObject.SetActive(true);
-                GlobalAudioScript.MuteSounds();
-                Time.timeScale = 0;
-                             
+        pauseMenu.gameObject.SetActive(false);
+        gamePaused = true;
+        ControlsMenu.gameObject.SetActive(false);
+        DeathCanvas.gameObject.SetActive(false);
+        VictoryCanvas.gameObject.SetActive(true);
+        GlobalAudioScript.MuteSounds();
+        Time.timeScale = 0;
+
     }
 
     private void NextLevel()
@@ -106,10 +102,10 @@ public class PauseMenuController : MonoBehaviour
         DeathCanvas.SetActive(false);
         VictoryCanvas.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+
     }
 
-   private void PauseGame()
+    private void PauseGame()
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {
@@ -120,14 +116,14 @@ public class PauseMenuController : MonoBehaviour
             ControlsMenu.gameObject.SetActive(false);
             GlobalAudioScript.MuteSounds();
             Time.timeScale = 0;
-        }                   
+        }
     }
-    
-   public void ResumeGame()
+
+    public void ResumeGame()
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {
-              WallBack.gameObject.SetActive(false);
+            WallBack.gameObject.SetActive(false);
             WallBack1.gameObject.SetActive(false);
 
             pauseMenu.gameObject.SetActive(false);

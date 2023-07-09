@@ -592,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6886246393775261842}
   - component: {fileID: 6886246393775261869}
+  - component: {fileID: 2756790085634192678}
   m_Layer: 0
   m_Name: VictoryVolume
   m_TagString: Untagged
@@ -635,6 +636,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2756790085634192678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886246393775261868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b695b69a8643e6841b76ac9e6cd58ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuController: {fileID: 0}
 --- !u!1 &7809263827859241372
 GameObject:
   m_ObjectHideFlags: 0

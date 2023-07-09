@@ -1,13 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class VictoryVolumeBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    private PauseMenuController pauseMenuController;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // @TODO: Show victory screen
+            if (!pauseMenuController.VictoryCanvas.activeInHierarchy)
+            {
+                pauseMenuController.VictoryScreen();
+            }
         }
     }
 }

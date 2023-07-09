@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_1.unity
     guid: 1a6762a37b3e7a74c8154cd047708495
   - enabled: 1
-    path: Assets/Scenes/Drive_straight.unity
-    guid: dc3a659b55a860344a6352349a445bcd
+    path: Assets/Scenes/Level_2.unity
+    guid: 74a6707bb5674624fa85b71ef3d9d2d4
+  - enabled: 1
+    path: Assets/Scenes/Level_3.unity
+    guid: 1e573a5e224edc44eadae5e4a73c8118
+  - enabled: 1
+    path: Assets/Scenes/Level_4.unity
+    guid: 3507ce371ab131446952749e509b2e24
   m_configObjects: {}

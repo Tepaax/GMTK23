@@ -44,7 +44,7 @@ public class MapBehaviour : MonoBehaviour
 
             horizontalInput = Input.GetAxisRaw("Horizontal");
             MoveMap();
-            Debug.Log(horizontalInput);
+            //Debug.Log(horizontalInput);
         }
         
     }

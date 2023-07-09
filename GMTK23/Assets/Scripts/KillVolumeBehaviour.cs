@@ -12,7 +12,6 @@ public class KillVolumeBehaviour : MonoBehaviour
             if (!pauseMenuController.DeathCanvas.activeInHierarchy)
             {
                 pauseMenuController.DeathScreen();
-
             }
         }
     }
