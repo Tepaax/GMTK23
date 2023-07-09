@@ -101,6 +101,7 @@ public class PauseMenuController : MonoBehaviour
         DeathCanvas.SetActive(false);
         VictoryCanvas.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
     public void PauseGame()
