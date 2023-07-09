@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioScript : MonoBehaviour
@@ -12,21 +9,21 @@ public class AudioScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(PlayerPrefs.HasKey("Volume"))
+        if (PlayerPrefs.HasKey("Volume"))
         {
 
-            BackGroundMusic.volume =  PlayerPrefs.GetFloat("Volume") * 0.01f;
-            BackGroundSounds.volume = PlayerPrefs.GetFloat("Volume")* 0.01f;
-           }
+            BackGroundMusic.volume = PlayerPrefs.GetFloat("Volume") * 0.01f;
+            BackGroundSounds.volume = PlayerPrefs.GetFloat("Volume") * 0.01f;
+        }
     }
-     public void UpdateVolumeGlobalAudio()
+    public void UpdateVolumeGlobalAudio()
     {
-     BackGroundMusic.volume = PlayerPrefs.GetFloat("Volume") *0.01f;
-     BackGroundSounds.volume = PlayerPrefs.GetFloat("Volume") * 0.01f;
+        BackGroundMusic.volume = PlayerPrefs.GetFloat("Volume") * 0.01f;
+        BackGroundSounds.volume = PlayerPrefs.GetFloat("Volume") * 0.01f;
     }
     public void MuteSounds()
     {
         BackGroundMusic.mute = !BackGroundMusic.mute;
         BackGroundSounds.mute = !BackGroundSounds.mute;
     }
- }
+}
