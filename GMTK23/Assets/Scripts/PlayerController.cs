@@ -67,5 +67,6 @@ public class PlayerController : MonoBehaviour
         int milliseconds = Mathf.FloorToInt((timer * 1000) % 1000);
         string timeString = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
         timerText.SetText("Timer: " + timeString);
+        PlayerPrefs.SetString("Timer", timeString);
     }
 }

@@ -28,9 +28,14 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField]
     private AudioScript GlobalAudioScript = null;
     [SerializeField]
-    private GameObject DeathCanvas = null;
+    public GameObject DeathCanvas = null;
     [SerializeField]
-    private GameObject VictoryCanvas = null;
+    public GameObject VictoryCanvas = null;
+    [SerializeField]
+    private GameObject WallBack = null;
+    [SerializeField]
+    private GameObject WallBack1 = null;
+    
    
     private void Start()
     {
@@ -108,6 +113,8 @@ public class PauseMenuController : MonoBehaviour
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {
+            WallBack.gameObject.SetActive(true);
+            WallBack1.gameObject.SetActive(true);
             pauseMenu.gameObject.SetActive(true);
             gamePaused = true;
             ControlsMenu.gameObject.SetActive(false);
@@ -120,6 +127,8 @@ public class PauseMenuController : MonoBehaviour
     {
         if (!VictoryCanvas.activeInHierarchy || !DeathCanvas.activeInHierarchy)
         {
+              WallBack.gameObject.SetActive(false);
+            WallBack1.gameObject.SetActive(false);
 
             pauseMenu.gameObject.SetActive(false);
             gamePaused = false;
