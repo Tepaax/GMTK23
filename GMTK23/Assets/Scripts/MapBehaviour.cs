@@ -10,14 +10,10 @@ public class MapBehaviour : MonoBehaviour
     [SerializeField]
     private float CameraSpeed;
     [SerializeField]
-<<<<<<< Updated upstream
-    private Camera MainCamera;
-=======
     private float MapSpeed;
     [SerializeField]
     private Camera camera;
     
->>>>>>> Stashed changes
 
     private float horizontalInput;
     private Vector3 moveDirection;
@@ -30,7 +26,7 @@ public class MapBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!MainCamera.isActiveAndEnabled)
+        if(!camera.isActiveAndEnabled)
         {
             if (Input.GetKey(KeyCode.E))
             {
