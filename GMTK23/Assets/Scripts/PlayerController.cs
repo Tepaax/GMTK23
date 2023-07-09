@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     private float timer;
 
-    // private GameObject[] wheels = null;
     private GameObject selectedCar = null;
 
     void Start()
@@ -28,36 +27,19 @@ public class PlayerController : MonoBehaviour
         {
             selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/truck"), transform.position, transform.rotation, transform);
         }
-
-        // wheels = new GameObject[4];
-        //for (int i = 0; i < wheels.Length; i++)
-        //{
-        //    wheels[i] = selectedCar.transform.GetChild(i + 1).gameObject;
-        //}
     }
+
     public void ReinstantiateCar()
     {
         if (PlayerPrefs.HasKey("car"))
         {
             Destroy(selectedCar);
             selectedCar = Instantiate(Resources.Load<GameObject>("FBX_Models/" + PlayerPrefs.GetString("car")), transform.position, transform.rotation, transform);
-            //  Array.Clear(wheels, 0, wheels.Length);
-            //for (int i = 0; i < wheels.Length; i++)
-            //{
-            //    wheels[i] = selectedCar.transform.GetChild(i + 1).gameObject;
-            //}
-
         }
     }
 
     private void Update()
     {
-        if (movingEnabled)
-        {
-            timer += Time.deltaTime;
-            DisplayTime();
-        }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             movingEnabled = true;
@@ -65,20 +47,12 @@ public class PlayerController : MonoBehaviour
 
         if (movingEnabled)
         {
+            timer += Time.deltaTime;
+            DisplayTime();
             currentSpeed += acceleration * Time.deltaTime;
         }
 
-        //transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
-        transform.Translate(20.0f * Time.deltaTime * Vector3.forward);
-
-        //float distanceTraveled = currentSpeed * Time.deltaTime;
-        //float rotationInRadians = distanceTraveled / wheelRadius;
-        //float rotationInDegrees = rotationInRadians * Mathf.Rad2Deg;
-
-        //foreach (GameObject wheel in wheels)
-        //{
-        //    wheel.transform.Rotate(rotationInDegrees, 0, 0);
-        //}
+        transform.Translate(currentSpeed * Time.deltaTime * Vector3.forward);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
